@@ -1,0 +1,60 @@
+<div class="register-container">
+  <div class="register-card">
+    <h2>Register</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          type="text"
+          id="firstName"
+          formControlName="firstName"
+          class="form-control"
+          [class.is-invalid]="submitted && f['firstName'].errors"
+          placeholder="Enter your first name"
+        />
+        <small class="error-text" *ngIf="submitted && f['firstName'].errors">
+          <span *ngIf="f['firstName'].errors['required']">First name is required</span>
+          <span *ngIf="f['firstName'].errors['minlength']">First name must be at least 2 characters</span>
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-control"
+          [class.is-invalid]="submitted && f['email'].errors"
+          placeholder="Enter your email"
+        />
+        <small class="error-text" *ngIf="submitted && f['email'].errors">
+          <span *ngIf="f['email'].errors['required']">Email is required</span>
+          <span *ngIf="f['email'].errors['email']">Invalid email format</span>
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="form-control"
+          [class.is-invalid]="submitted && f['password'].errors"
+          placeholder="Enter your password"
+        />
+        <small class="error-text" *ngIf="submitted && f['password'].errors">
+          <span *ngIf="f['password'].errors['required']">Password is required</span>
+          <span *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters</span>
+        </small>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+
+    <p class="login-link">
+      Already have an account? <a (click)="navigateToLogin()">Click here to login</a>
+    </p>
+  </div>
+</div>
