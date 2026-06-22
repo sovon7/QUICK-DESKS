@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,8 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.registerForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2)]],
@@ -31,10 +33,11 @@ export class RegisterComponent {
     if (this.registerForm.invalid) {
       return;
     }
-    // TODO: Implement registration logic
-    console.log('Register:', this.registerForm.value);
-    // Navigate to login after successful registration
-    this.router.navigate(['/auth/login']);
+    const { firstName, email, password } = this.registerForm.value;
+    // Register and auto-login
+    this.authService.register(firstName, email, password);
+    // Navigate to dashboard after successful registration
+    this.router.navigate(['/dashboard']);
   }
 
   navigateToLogin() {
