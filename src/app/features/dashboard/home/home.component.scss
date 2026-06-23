@@ -1,5 +1,6 @@
 @use '../../../../assets/abstract/font-size.scss' as font-sizes;
 @use '../../../../assets/abstract/colors.scss' as colors;
+@use '../../../../assets/abstract/common-mixin.scss' as mixins;
 
 /* Header Styles */
 .header {
@@ -29,12 +30,9 @@
 }
 
 .logout-btn {
+  @include mixins.tile-btn-base(6px 14px, font-sizes.$font-size-13);
   background-color: colors.$color-white;
   color: colors.$color-primary;
-  padding: 6px 14px;
-  border-radius: 4px;
-  font-weight: font-sizes.$font-weight-semibold;
-  font-size: font-sizes.$font-size-13;
 }
 
 /* Main Content Styles */
@@ -62,126 +60,115 @@
 /* Tiles Grid */
 .tiles-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(6, 1fr);
   gap: 20px;
   width: 100%;
 }
 
 .tile {
-  border-radius: 8px;
-  padding: 28px;
-  min-height: 160px;
+  @include mixins.tile-base(24px, 160px);
+  grid-column: span 3;
+
+  /* Clock and Calculator */
+  &:nth-child(1),
+  &:nth-child(2) {
+    grid-column: span 3;
+    border: 1px solid;
+  }
+
+  /* Jokes, Notepad, Game */
+  &:nth-child(3),
+  &:nth-child(4),
+  &:nth-child(5) {
+    grid-column: span 2;
+    min-height: 160px;
+    border: 1px solid;
+  }
+
+  .tile-content { flex: 1; }
 
   .tile-icon {
     font-size: font-sizes.$font-size-46;
-    margin-bottom: 12px;
+    margin-left: 16px;
+    flex-shrink: 0;
   }
 
   .tile-title {
     font-size: font-sizes.$font-size-20;
     font-weight: font-sizes.$font-weight-semibold;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
   }
 
   .tile-description {
     font-size: font-sizes.$font-size-13;
     font-weight: font-sizes.$font-weight-medium;
-    opacity: 0.9;
+    margin-bottom: 16px;
+    opacity: 0.85;
   }
+}
+
+/* Button Styles */
+.tile-btn {
+  @include mixins.tile-btn-base(8px 20px, font-sizes.$font-size-13);
+
+  &.btn-primary { background-color: colors.$button-primary; color: colors.$color-white; }
+  &.btn-orange  { background-color: colors.$button-orange;  color: colors.$color-white; }
+  &.btn-gray    { background-color: colors.$button-gray;    color: colors.$color-white; }
+  &.btn-green   { background-color: colors.$button-green;   color: colors.$color-white; }
 }
 
 /* Tile-specific backgrounds */
-.tile-weather {
-  background: colors.$color-weather;
-  color: colors.$color-white;
-  text-shadow: colors.$title-background-color-tile;
-}
-
-.tile-jokes {
-  background: colors.$color-jokes;
-  color: colors.$color-white;
-  text-shadow: colors.$title-background-color-tile;
-}
-
-.tile-notepad {
-  background: colors.$color-notepad;
-  color: colors.$color-text-dark;
-}
-
-.tile-game {
-  background: colors.$color-game;
-  color: colors.$color-white;
-  text-shadow: colors.$title-background-color-tile;
-}
+.tile-clock      { @include mixins.tile-background(colors.$color-clock); }
+.tile-calculator { @include mixins.tile-background(colors.$color-calculator); }
+.tile-jokes      { @include mixins.tile-background(colors.$color-jokes); }
+.tile-notepad    { @include mixins.tile-background(colors.$color-notepad); }
+.tile-game       { @include mixins.tile-background(colors.$color-game); }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 12px 20px;
-
-    .header-right {
-      width: 100%;
-      justify-content: space-between;
-    }
-  }
-
-  .main-content {
-    padding: 16px;
-  }
-
-  .content-header h1 {
-    font-size: font-sizes.$font-size-26;
-  }
-
-  .subtitle {
-    font-size: font-sizes.$font-size-13;
-  }
+@media (max-width: 1024px) {
+  .tiles-grid { grid-template-columns: repeat(6, 1fr); }
 
   .tile {
-    padding: 24px;
-    min-height: 140px;
+    &:nth-child(1), &:nth-child(2) { grid-column: span 3; }
+    &:nth-child(3), &:nth-child(4), &:nth-child(5) { grid-column: span 2; }
+  }
+}
 
-    .tile-icon {
-      font-size: font-sizes.$font-size-40;
-    }
+@media (max-width: 768px) {
+  .header { padding: 12px 20px; }
+  .main-content { padding: 16px; }
 
-    .tile-title {
-      font-size: font-sizes.$font-size-18;
-    }
+  .content-header h1 { font-size: font-sizes.$font-size-26; }
+  .subtitle { font-size: font-sizes.$font-size-13; }
 
-    .tile-description {
-      font-size: font-sizes.$font-size-12;
-    }
+  .tiles-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+  .tile {
+    @include mixins.tile-base(20px, 160px);
+
+    &:nth-child(1), &:nth-child(2) { grid-column: span 1; }
+    &:nth-child(3), &:nth-child(4), &:nth-child(5) { grid-column: span 1; min-height: 140px; }
+
+    .tile-icon { font-size: font-sizes.$font-size-40; margin-left: 12px; }
+    .tile-title { font-size: font-sizes.$font-size-18; }
+    .tile-description { font-size: font-sizes.$font-size-12; }
   }
 }
 
 @media (max-width: 480px) {
-  .greeting {
-    font-size: font-sizes.$font-size-13;
-  }
+  .greeting { font-size: font-sizes.$font-size-13; }
+  .logout-btn { @include mixins.tile-btn-base(5px 10px, font-sizes.$font-size-11); }
 
-  .logout-btn {
-    padding: 5px 10px;
-    font-size: font-sizes.$font-size-11;
-  }
-
-  .content-header h1 {
-    font-size: font-sizes.$font-size-22;
-  }
+  .content-header h1 { font-size: font-sizes.$font-size-22; }
+  .tiles-grid { grid-template-columns: 1fr; gap: 12px; }
 
   .tile {
-    padding: 20px;
-    min-height: 130px;
+    @include mixins.tile-base(16px, 120px);
 
-    .tile-icon {
-      font-size: font-sizes.$font-size-34;
-    }
+    &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4), &:nth-child(5) { grid-column: span 1; }
 
-    .tile-title {
-      font-size: font-sizes.$font-size-16;
-    }
+    .tile-icon { font-size: font-sizes.$font-size-34; margin-left: 0; margin-top: 12px; }
+    .tile-title { font-size: font-sizes.$font-size-16; }
+    .tile-btn { @include mixins.tile-btn-base(6px 16px, font-sizes.$font-size-12); }
   }
 }

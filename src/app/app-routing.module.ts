@@ -11,10 +11,6 @@ const routes: Routes = [
     loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
-    path: 'weather',
-    loadChildren: () => import('./features/live-weather/live-weather.module').then(m => m.LiveWeatherModule)
-  },
-  {
     path: 'jokes',
     loadChildren: () => import('./features/jokes-funny/jokes-funny.module').then(m => m.JokesFunnyModule)
   },

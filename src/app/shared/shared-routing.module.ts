@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LiveWeatherComponent } from './live-weather.component';
 
-const routes: Routes = [
-  { path: '', component: LiveWeatherComponent }
-];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class LiveWeatherRoutingModule { }
+export class SharedRoutingModule { }

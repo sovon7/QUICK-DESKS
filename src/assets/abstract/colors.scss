@@ -4,10 +4,17 @@ $color-primary-dark: #1565c0;
 $color-text-dark: #2c3e50;
 $color-text-light: #7f8c8d;
 $color-white: #ffffff;
-$color-weather: linear-gradient(135deg, #2196F3 0%, #64B5F6 100%);
-$color-jokes: linear-gradient(135deg, #FF9800 0%, #FFB74D 100%);
-$color-notepad: linear-gradient(135deg, #F5F5F5 0%, #E0E0E0 100%);
-$color-game: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+$color-clock: #E3F2FD;
+$color-calculator: #E3F2FD;
+$color-jokes: #FFF9E6;
+$color-notepad: #F5F5F5;
+$color-game: #E8F5E9;
+
+/* Button Colors */
+$button-primary: #0D7AB3;
+$button-orange: #FF9800;
+$button-gray: #757575;
+$button-green: #2E7D32;
 
 $box-shadow-light: 0 2px 6px rgba(0, 0, 0, 0.1);
 $box-shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.15);
