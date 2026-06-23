@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService, User } from '../../../services/auth.service';
+import { AuthService, User } from '../../../auth/services/auth.service';
 
 interface Tile {
   id: string;
