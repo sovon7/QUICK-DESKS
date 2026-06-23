@@ -1,6 +1,6 @@
 <div class="home-container d-flex flex-column min-vh-100">
   <!-- Header -->
-  <header class="header d-flex justify-content-between align-items-center">
+  <header class="header d-flex flex-lg-row flex-column justify-content-lg-between justify-content-center align-items-center gap-2 gap-lg-0">
     <div class="header-left d-flex align-items-center">
       <div class="logo d-flex align-items-center gap-2 fw-bold fs-5">
         <span class="logo-icon fs-3">🏠</span>
@@ -14,7 +14,7 @@
           {{ currentUser?.firstName?.charAt(0)?.toUpperCase() || 'U' }}
         </div>
       </div>
-      <button class="logout-btn cursor-pointer border-0" (click)="logout()">Logout</button>
+      <button class="logout-btn border-0" (click)="logout()">Logout</button>
     </div>
   </header>
 
@@ -28,16 +28,31 @@
     <div class="tiles-grid">
       <div
         *ngFor="let tile of tiles"
-        class="tile cursor-pointer d-flex flex-column align-items-center justify-content-center"
-        [class.tile-weather]="tile.id === 'weather'"
+        class="tile d-flex flex-lg-row flex-column align-items-lg-start align-items-center justify-content-between"
+        [class.tile-clock]="tile.id === 'clock'"
+        [class.tile-calculator]="tile.id === 'calculator'"
         [class.tile-jokes]="tile.id === 'jokes'"
         [class.tile-notepad]="tile.id === 'notepad'"
         [class.tile-game]="tile.id === 'game'"
-        (click)="navigateToTile(tile)"
       >
+        <!-- Left Content -->
+        <div class="tile-content d-flex flex-column justify-content-between">
+          <div class="tile-title">{{ tile.title }}</div>
+          <div class="tile-description">{{ tile.description }}</div>
+          <button 
+            class="tile-btn border-0"
+            [class.btn-primary]="tile.id === 'clock' || tile.id === 'calculator'"
+            [class.btn-orange]="tile.id === 'jokes'"
+            [class.btn-gray]="tile.id === 'notepad'"
+            [class.btn-green]="tile.id === 'game'"
+            (click)="navigateToTile(tile)"
+          >
+            {{ tile.buttonLabel }}
+          </button>
+        </div>
+
+        <!-- Right Icon -->
         <div class="tile-icon">{{ tile.icon }}</div>
-        <div class="tile-title">{{ tile.title }}</div>
-        <div class="tile-description">{{ tile.description }}</div>
       </div>
     </div>
   </main>

@@ -9,6 +9,7 @@ interface Tile {
   icon: string;
   route: string;
   color: string;
+  buttonLabel: string;
 }
 
 @Component({
@@ -20,12 +21,22 @@ export class HomeComponent implements OnInit {
   currentUser: User | null = null;
   tiles: Tile[] = [
     {
-      id: 'weather',
-      title: 'Weather',
-      description: 'Check the latest forecast',
-      icon: '☁️',
-      route: '/weather',
-      color: '#2196F3'
+      id: 'clock',
+      title: 'Clock',
+      description: 'View time & set alarms',
+      icon: '🕐',
+      route: '/clock',
+      color: '#64B5F6',
+      buttonLabel: 'Open Clock'
+    },
+    {
+      id: 'calculator',
+      title: 'Calculator',
+      description: 'Perform quick calculations',
+      icon: '🧮',
+      route: '/calculator',
+      color: '#2196F3',
+      buttonLabel: 'Open Calculator'
     },
     {
       id: 'jokes',
@@ -33,7 +44,8 @@ export class HomeComponent implements OnInit {
       description: 'Browse fun jokes',
       icon: '😂',
       route: '/jokes',
-      color: '#FF9800'
+      color: '#FF9800',
+      buttonLabel: 'Open Jokes'
     },
     {
       id: 'notepad',
@@ -41,7 +53,8 @@ export class HomeComponent implements OnInit {
       description: 'Save your important notes',
       icon: '📝',
       route: '/notepad',
-      color: '#F5F5F5'
+      color: '#F5F5F5',
+      buttonLabel: 'Open Notepad'
     },
     {
       id: 'game',
@@ -49,7 +62,8 @@ export class HomeComponent implements OnInit {
       description: 'Play a quick game',
       icon: '🎮',
       route: '/game',
-      color: '#4CAF50'
+      color: '#4CAF50',
+      buttonLabel: 'Play Game'
     }
   ];
 

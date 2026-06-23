@@ -1,0 +1,41 @@
+@use 'colors' as colors;
+@use 'font-size' as font-sizes;
+
+/* Base tile styling */
+@mixin tile-base($padding, $min-height) {
+  border-radius: 8px;
+  padding: $padding;
+  min-height: $min-height;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: colors.$box-shadow-light;
+
+  &:hover {
+    box-shadow: colors.$box-shadow-hover;
+    transform: translateY(-2px);
+  }
+}
+
+/* Base button styling */
+@mixin tile-btn-base($padding, $font-size) {
+  align-self: flex-start;
+  padding: $padding;
+  border-radius: 4px;
+  font-size: $font-size;
+  font-weight: font-sizes.$font-weight-semibold;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: colors.$box-shadow-hover;
+  }
+}
+
+/* Tile background variant */
+@mixin tile-background($bg-color, $text-color: colors.$color-text-dark) {
+  background: $bg-color;
+  color: $text-color;
+  grid-column: span 1;
+}
